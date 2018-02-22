@@ -38,6 +38,7 @@ public class CounterDemo extends GenericTest {
     public static final String DEST = "./target/test/resources/sandbox/logging/stamp.pdf";
     public static final String LOG_RESULT = "./target/test/resources/sandbox/logging/log.txt";
     public static final String CMP_LOG = "./src/test/resources/sandbox/logging/cmp_log.txt";
+    public static final String CMP_LOG_LICENSED = "./src/test/resources/sandbox/logging/cmp_log_licensed.txt";
 
     MyCounter myCounter;
 
@@ -67,7 +68,7 @@ public class CounterDemo extends GenericTest {
         myCounter.close();
         CounterFactory.getInstance().setCounter(new DefaultCounter());
 
-        compareTxt(CMP_LOG, LOG_RESULT);
+        compareLogs();
     }
 
     public class MyCounter implements Counter {
@@ -128,8 +129,8 @@ public class CounterDemo extends GenericTest {
         }
     }
 
-    private void compareTxt(String cmp, String out) throws IOException {
-        Assert.assertEquals(fileToString(cmp), fileToString(out));
+    private void compareLogs() throws IOException {
+        Assert.assertTrue(fileToString(LOG_RESULT).equals(fileToString(CMP_LOG)) || fileToString(LOG_RESULT).equals(fileToString(CMP_LOG_LICENSED)));
     }
 
     private String fileToString(String filePath) throws IOException {
@@ -138,8 +139,9 @@ public class CounterDemo extends GenericTest {
         StringBuilder sb = new StringBuilder();
         String thisLine;
         while ((thisLine = myInput.readLine()) != null) {
-            if (thisLine.length() > 10) {
-                sb.append(thisLine.substring(thisLine.length() - 10, thisLine.length()));
+            int index = thisLine.lastIndexOf(": ");
+            if (index > -1) {
+                sb.append(thisLine, index + 2, thisLine.length()).append("\n");
             }
         }
         return sb.toString();
