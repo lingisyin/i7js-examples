@@ -20,7 +20,7 @@
         <licensekey.version>3.0.2</licensekey.version>
         <cleanup.version>1.1.2-SNAPSHOT</cleanup.version>
         <zugferd.version>1.0.3-SNAPSHOT</zugferd.version>
-        <pdfHtml.version>1.0.5-SNAPSHOT</pdfHtml.version>
+        <pdfHtml.version>1.0.6-SNAPSHOT</pdfHtml.version>
         <pdfCalligraph.version>1.0.4-SNAPSHOT</pdfCalligraph.version>
         <pdfXfa.version>1.0.4-SNAPSHOT</pdfXfa.version>
     </properties>
