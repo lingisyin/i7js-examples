@@ -66,6 +66,8 @@ public class GenericTest {
      * Tests the example.
      * If SRC and DEST are defined, the example manipulates a PDF;
      * if only DEST is defined, the example creates a PDF.
+     *
+     * @throws Exception if any
      */
     @Test// (timeout = 120000)
     public void test() throws Exception {
@@ -91,6 +93,7 @@ public class GenericTest {
      * original sample class.
      *
      * @param    dest    the resulting PDF
+     * @throws Exception if any
      */
     protected void manipulatePdf(String dest) throws Exception {
     }
@@ -137,6 +140,7 @@ public class GenericTest {
      *
      * @param    dest    the PDF that resulted from the test
      * @param    cmp        the reference PDF
+     * @throws Exception if any
      */
     protected void comparePdf(String dest, String cmp) throws Exception {
         if (cmp == null || cmp.length() == 0) return;
@@ -162,6 +166,8 @@ public class GenericTest {
 
     /**
      * Every test needs to know where to find its reference file.
+     *
+     * @return the reference file
      */
     protected String getCmpPdf() {
         String tmp = getDest();
